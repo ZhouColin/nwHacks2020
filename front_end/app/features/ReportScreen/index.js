@@ -17,6 +17,10 @@ import {connect} from 'react-redux';
 import {setUser} from 'store/user/actions';
 import NumberTicker from 'react-native-number-ticker';
 import LinearGradient from 'react-native-linear-gradient';
+import {filterUsers} from 'store/users/actions';
+
+import { negativeStatusCount, neutralStatusCount, positiveStatusCount,
+  negativePercentage, neutralPercentage, positivePercentage } from 'store/users/data'
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -46,7 +50,9 @@ class App extends React.PureComponent {
     const {labelWidth, selectedSlice} = this.state;
     const {label, value} = selectedSlice;
     const keys = ['Positive', 'Neutral', 'Negative'];
-    const values = [50, 20, 30];
+    console.log('adbs', this.props.allStatistics);
+    const {negativePercentage, positivePercentage, neutralPercentage} = this.props.allStatistics;
+    const values = [negativePercentage, neutralPercentage,positivePercentage];
     const colors = ['#91EE9A', '#FAFACC', '#FF4040'];
     const data = keys.map((key, index) => {
       return {
@@ -296,5 +302,11 @@ const mapDispatchToProps = dispatch => ({
   updateUser: payload => dispatch(setUser(payload)),
 });
 
+const mapStateToProps = state => ({
+  allStatistics: state.allUsers
+})
+
 // eslint-disable-next-line prettier/prettier
-export default connect(null, mapDispatchToProps)(App);
+
+// eslint-disable-next-line prettier/prettier
+export default connect(mapStateToProps, mapDispatchToProps)(App);

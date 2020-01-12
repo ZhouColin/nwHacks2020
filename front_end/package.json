@@ -7,13 +7,22 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "pod": "cd ios && pod install",
+    "remove-ios-build": "rm -rf ios/build",
+    "remove-android-build": "rm -rf android/build && rm -rf android/app/build"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.5",
     "@reduxjs/toolkit": "^1.2.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.3",
+    "react-native-reanimated": "^1.4.0",
+    "react-native-safe-area-context": "^0.6.2",
+    "react-native-screens": "^2.0.0-alpha.23",
+    "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^2.0.13",
     "redux": "^4.0.5"

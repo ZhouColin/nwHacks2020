@@ -48,7 +48,7 @@ class App extends React.PureComponent {
      <View style={{ justifyContent: 'space-around', top: 50, flex: 0.8 }}>
        <View style={{position: 'absolute', width: deviceWidth, height: 750, top: -50, backgroundColor: '#72BAD1'}}/>
        <View style={{position: 'absolute', width: deviceWidth, height: 240, bottom: -175, backgroundColor: '#EDEDED'}}/>
-       <View style={{position: 'absolute', left: deviceWidth/2 - 100, top: 70, width: 200, height: 200, borderRadius: 100, backgroundColor: 'white'}}/>
+       <View style={{position: 'absolute', left: deviceWidth/2 - 100, top: 65, width: 200, height: 200, borderRadius: 100, backgroundColor: 'white'}}/>
            <PieChart
              style={{ height: 300 }}
              outerRadius={'70%'}

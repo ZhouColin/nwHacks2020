@@ -3,6 +3,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import ReportScreen from 'features/ReportScreen';
 import LoginScreen from 'features/LoginScreen';
 import UserScreen from 'features/UserScreen';
+import SelfScreen from 'features/SelfScreen';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 
@@ -19,7 +20,8 @@ export default createAppContainer(
     {
       Report: AppStack,
       my_pH: AuthStack,
-      Users: UserStack
+      Users: UserStack,
+      Self: SelfScreen
     },
     {
       initialRouteName: 'Report',

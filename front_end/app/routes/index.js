@@ -16,6 +16,7 @@ const AppStack = createBottomTabNavigator(
   {
     Report: ReportScreen,
     User: UserScreen,
+    Self: SelfScreen
   },
   {
     initialRouteName: 'Report',

@@ -7291,6 +7291,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-animate-number@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-animate-number/-/react-native-animate-number-0.1.2.tgz#d41c5a784e05f9d788dafbf7b158584c65e8cf47"
+  integrity sha1-1BxaeE4F+deI2vv3sVhYTGXoz0c=
+  dependencies:
+    react-timer-mixin "^0.13.3"
+
 react-native-auth0@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-native-auth0/-/react-native-auth0-2.1.1.tgz#c552d0953a2b46bd9f24312eb6f10704ef8cb73d"
@@ -7343,6 +7350,11 @@ react-native-linear-gradient@^2.5.6:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
   integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
+
+react-native-number-ticker@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-number-ticker/-/react-native-number-ticker-0.1.5.tgz#af7de09a2bc8c8bb7a2eadaff60aeb56ff0b4b0b"
+  integrity sha512-HHk9sV+vt4w1f9lt9s60GsFYWWCEFaK+PgF6KaXnaUD+FftAx/JJjey805e8CPkDJrQY57ca22fIb7pmPg3CXA==
 
 react-native-ratings@^6.3.0:
   version "6.5.0"
@@ -7589,7 +7601,7 @@ react-test-renderer@16.9.0:
     react-is "^16.9.0"
     scheduler "^0.15.0"
 
-react-timer-mixin@^0.13.2:
+react-timer-mixin@^0.13.2, react-timer-mixin@^0.13.3:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==

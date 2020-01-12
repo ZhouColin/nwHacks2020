@@ -15,6 +15,7 @@ import {Button} from 'react-native-elements';
 import {PieChart} from 'react-native-svg-charts';
 import {connect} from 'react-redux';
 import {setUser} from 'store/user/actions';
+import NumberTicker from 'react-native-number-ticker';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -64,23 +65,23 @@ class App extends React.PureComponent {
     const deviceHeight = Dimensions.get('window').height;
 
     return (
-      <View style={{justifyContent: 'space-around', top: 50, flex: 0.8}}>
+      <View style={{justifyContent: 'space-around', top: 50, flex: 0.9}}>
         <View
           style={{
             position: 'absolute',
             width: deviceWidth,
-            height: 750,
+            height: 600,
             top: -50,
-            backgroundColor: '#72BAD1',
+            backgroundColor: '#b5dcfd',
           }}
         />
         <View
           style={{
             position: 'absolute',
             width: deviceWidth,
-            height: 240,
+            height: 360,
             bottom: -175,
-            backgroundColor: '#EDEDED',
+            backgroundColor: '#c9c9c9',
           }}
         />
         <View
@@ -91,24 +92,26 @@ class App extends React.PureComponent {
             width: 200,
             height: 200,
             borderRadius: 100,
-            backgroundColor: 'white',
+            backgroundColor: '#74bad1',
           }}
         />
         <PieChart
-          style={{height: 300}}
+          style={{height: 300,shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}
           outerRadius={'70%'}
           innerRadius={'60%'}
           data={data}
+          animate={true}
+          animationDuration={300}
         />
         <Image
           style={{
             position: 'absolute',
-            top: 105,
-            left: deviceWidth / 2 - 40,
-            width: 80,
-            height: 80,
+            marginTop:100,
+            left: deviceWidth / 2 - 50,
+            width: 100,
+            height: 180,
           }}
-          source={require('./whale.png')}
+          source={require('./commas.png')}
         />
         <Text
           onLayout={({
@@ -141,9 +144,9 @@ class App extends React.PureComponent {
             {'\n'} Consider rebalancing your waters.{'\n'}
           </Text>
         </Text>
-        <View style={{justifyContent: 'space-around', flexDirection: 'row'}}>
+        <View style={{justifyContent: 'space-around', flexDirection: 'row',}}>
           <View
-            style={{width: 90, height: 150, justifyContent: 'space-between'}}>
+            style={{width: 90, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
             <TouchableOpacity
               style={{
                 flex: 1,
@@ -155,18 +158,21 @@ class App extends React.PureComponent {
                 justifyContent: 'center',
               }}>
               <Image
-                style={{width: 30, height: 30}}
+                style={{width: 30, height: 30, marginBottom:10}}
                 source={require('./fish.png')}
               />
+              <NumberTicker
+                 number={40}
+                 textSize={40}
+                 duration={3000}
+                 textStyle={{fontWeight: 'bold', color: 'black'}}
+              />
               <Text
-                style={{fontWeight: 'bold', fontSize: 30, textAlign: 'center'}}>
-                000
-                <Text style={{fontSize: 15}}>{'\n'}Positive</Text>
+              style={{fontSize: 15}}>{'\n'}Positive</Text>
                 <Text
                   style={{fontSize: 10, fontWeight: 'bold', color: '#7B7B7B'}}>
-                  {'\n'}users
+                  users
                 </Text>
-              </Text>
             </TouchableOpacity>
             <View
               style={{width: 100, height: 15, backgroundColor: '#91EE9A'}}
@@ -174,7 +180,7 @@ class App extends React.PureComponent {
           </View>
 
           <View
-            style={{width: 90, height: 150, justifyContent: 'space-between'}}>
+            style={{width: 90, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
             <TouchableOpacity
               style={{
                 flex: 1,
@@ -186,18 +192,21 @@ class App extends React.PureComponent {
                 justifyContent: 'center',
               }}>
               <Image
-                style={{width: 30, height: 30}}
+                style={{width: 30, height: 30, marginBottom:10}}
                 source={require('./fish.png')}
               />
+              <NumberTicker
+                 number={40}
+                 textSize={40}
+                 duration={3000}
+                 textStyle={{fontWeight: 'bold', color: 'black'}}
+              />
               <Text
-                style={{fontWeight: 'bold', fontSize: 30, textAlign: 'center'}}>
-                000
-                <Text style={{fontSize: 15}}>{'\n'}Neutral</Text>
+              style={{fontSize: 15}}>{'\n'}Neutral</Text>
                 <Text
                   style={{fontSize: 10, fontWeight: 'bold', color: '#7B7B7B'}}>
-                  {'\n'}users
+                  users
                 </Text>
-              </Text>
             </TouchableOpacity>
             <View
               style={{width: 100, height: 15, backgroundColor: '#FAFACC'}}
@@ -205,7 +214,7 @@ class App extends React.PureComponent {
           </View>
 
           <View
-            style={{width: 90, height: 150, justifyContent: 'space-between'}}>
+            style={{width: 90, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
             <TouchableOpacity
               style={{
                 flex: 1,
@@ -217,18 +226,21 @@ class App extends React.PureComponent {
                 justifyContent: 'center',
               }}>
               <Image
-                style={{width: 30, height: 30}}
+                style={{width: 30, height: 30, marginBottom:10}}
                 source={require('./fish.png')}
               />
+              <NumberTicker
+                 number={40}
+                 textSize={40}
+                 duration={3000}
+                 textStyle={{fontWeight: 'bold', color: 'black'}}
+              />
               <Text
-                style={{fontWeight: 'bold', fontSize: 30, textAlign: 'center'}}>
-                000
-                <Text style={{fontSize: 15}}>{'\n'}Negative</Text>
+              style={{fontSize: 15}}>{'\n'}Negative</Text>
                 <Text
                   style={{fontSize: 10, fontWeight: 'bold', color: '#7B7B7B'}}>
-                  {'\n'}users
+                  users
                 </Text>
-              </Text>
             </TouchableOpacity>
             <View
               style={{width: 100, height: 15, backgroundColor: '#FF4040'}}

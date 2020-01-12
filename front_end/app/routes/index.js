@@ -10,11 +10,20 @@ import LoadingScreen from 'features/LoadingScreen';
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
 
+const UserStack = createStackNavigator(
+  {
+    UserPage: UserScreen,
+    UserInfo: SelfScreen,
+  },
+  {
+    initialRouteName: 'UserPage',
+  },
+);
+
 const AppStack = createBottomTabNavigator(
   {
     Report: ReportScreen,
-    User: UserScreen,
-    Self: SelfScreen
+    User: UserStack,
   },
   {
     initialRouteName: 'Report',

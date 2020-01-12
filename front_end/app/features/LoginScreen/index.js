@@ -1,7 +1,13 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, SafeAreaView, NativeModules} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  NativeModules,
+  AsyncStorage,
+} from 'react-native';
 import {Button} from 'react-native-elements';
-
+import {setUser} from 'store/user/actions';
+import {connect} from 'react-redux';
 const {RNTwitterSignIn} = NativeModules;
 
 const Constants = {
@@ -9,20 +15,30 @@ const Constants = {
   TWITTER_CONSUMER_SECRET: 'N8J2L1XaeNiFWNfeVrAAnkAFyDjxbiYBpCeFXP42qIWKkiMGQm',
 };
 
-const LoginScreen = () => {
-  const onSignIn = () => {
-    RNTwitterSignIn.init(
-      Constants.TWITTER_COMSUMER_KEY,
-      Constants.TWITTER_CONSUMER_SECRET,
-    );
-    RNTwitterSignIn.logIn()
-      .then(loginData => {
-        console.log(loginData);
-        const {authToken, authTokenSecret} = loginData;
-      })
-      .catch(error => {
-        console.log(error);
-      });
+const LoginScreen = ({navigation, updateUser}) => {
+  const onSignIn = async () => {
+    try {
+      RNTwitterSignIn.init(
+        Constants.TWITTER_COMSUMER_KEY,
+        Constants.TWITTER_CONSUMER_SECRET,
+      );
+      const {
+        authToken,
+        authTokenSecret,
+        name,
+        userID,
+        userName,
+      } = await RNTwitterSignIn.logIn();
+
+      const user = {authToken, authTokenSecret, name, userID, userName};
+
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+
+      updateUser(user);
+      user && navigation.navigate('App');
+    } catch (err) {
+      throw err;
+    }
   };
 
   return (
@@ -40,4 +56,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+const mapDispatchToProps = dispatch => ({
+  updateUser: payload => dispatch(setUser(payload)),
+});
+
+// eslint-disable-next-line prettier/prettier
+export default connect(null, mapDispatchToProps)(LoginScreen);

@@ -9,9 +9,12 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {PieChart} from 'react-native-svg-charts';
+import {connect} from 'react-redux';
+import {setUser} from 'store/user/actions';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -24,6 +27,17 @@ class App extends React.PureComponent {
       labelWidth: 0,
     };
   }
+
+  logOut = async () => {
+    try {
+      const {updateUser, navigation} = this.props;
+      await AsyncStorage.removeItem('user');
+      updateUser(null);
+      navigation.navigate('Auth');
+    } catch (err) {
+      throw err;
+    }
+  };
   render() {
     const {labelWidth, selectedSlice} = this.state;
     const {label, value} = selectedSlice;
@@ -219,9 +233,15 @@ class App extends React.PureComponent {
             />
           </View>
         </View>
+        <Button title="log out" onPress={this.logOut} />
       </View>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  updateUser: payload => dispatch(setUser(payload)),
+});
+
+// eslint-disable-next-line prettier/prettier
+export default connect(null, mapDispatchToProps)(App);

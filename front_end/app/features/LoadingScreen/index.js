@@ -4,12 +4,25 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  AsyncStorage,
 } from 'react-native';
 import {connect} from 'react-redux';
+import {setUser} from 'store/user/actions';
 
-const LoadingScreen = ({user, navigation}) => {
+const LoadingScreen = ({user, navigation, updateUser}) => {
   useEffect(() => {
-    navigation.navigate(user ? 'App' : 'Auth');
+    const bootStrap = async () => {
+      try {
+        const userNew = JSON.parse(await AsyncStorage.getItem('user')) || user;
+        console.log(userNew);
+        updateUser(userNew);
+        navigation.navigate(userNew ? 'App' : 'Auth');
+      } catch (err) {
+        throw err;
+      }
+    };
+
+    bootStrap();
   });
   return (
     <SafeAreaView style={styles.pageContainer}>
@@ -27,5 +40,9 @@ const styles = StyleSheet.create({
   },
 });
 const mapStateToProps = state => ({user: state.user});
+const mapDispatchToProps = dispatch => ({
+  updateUser: payload => dispatch(setUser(payload)),
+});
 
-export default connect(mapStateToProps)(LoadingScreen);
+// eslint-disable-next-line prettier/prettier
+export default connect(mapStateToProps, mapDispatchToProps)(LoadingScreen);

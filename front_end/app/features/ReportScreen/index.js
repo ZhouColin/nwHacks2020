@@ -51,8 +51,31 @@ class App extends React.PureComponent {
     const {label, value} = selectedSlice;
     const keys = ['Positive', 'Neutral', 'Negative'];
     console.log('adbs', this.props.allStatistics);
-    const {negativePercentage, positivePercentage, neutralPercentage} = this.props.allStatistics;
-    const values = [negativePercentage, neutralPercentage,positivePercentage];
+    // const {negativePercentage, positivePercentage, neutralPercentage} = this.props.allStatistics;
+    const allUsers = this.props.allStatistics.allUsers;
+    const userNames = Object.keys(this.props.allStatistics.allUsers);
+    const userPercentages = {};
+    const userStatusCounts = {};
+    userNames.map(name => {
+      let analysisStats = allUsers[name].analysisStatistics;
+      userPercentages[name] = [
+        analysisStats.negativePercentage,
+        analysisStats.neutralPercentage,
+        analysisStats.positivePercentage,
+      ]
+      userStatusCounts[name] = [
+        analysisStats.negativeStatusCount,
+        analysisStats.neutralStatusCount,
+        analysisStats.positiveStatusCount,
+      ];
+    });
+    // console.log(userPercentages);
+
+    // const values = [negativePercentage, neutralPercentage,positivePercentage];
+    const currentUser = 'dan_abramov';
+    const values = userPercentages[currentUser];
+    // console.log('first one', userStatusCounts[currentUser]);
+
     const colors = ['#91EE9A', '#FAFACC', '#FF4040'];
     const data = keys.map((key, index) => {
       return {
@@ -190,7 +213,7 @@ class App extends React.PureComponent {
                 source={require('./fish.png')}
               />
               <NumberTicker
-                 number={40}
+                 number={userStatusCounts[currentUser][2]}
                  textSize={40}
                  duration={3000}
                  textStyle={{fontWeight: 'bold', color: 'black'}}
@@ -224,7 +247,7 @@ class App extends React.PureComponent {
                 source={require('./fish.png')}
               />
               <NumberTicker
-                 number={40}
+                 number={userStatusCounts[currentUser][1]}
                  textSize={40}
                  duration={3000}
                  textStyle={{fontWeight: 'bold', color: 'black'}}
@@ -258,7 +281,7 @@ class App extends React.PureComponent {
                 source={require('./fish.png')}
               />
               <NumberTicker
-                 number={40}
+                 number={userStatusCounts[currentUser][0]}
                  textSize={40}
                  duration={3000}
                  textStyle={{fontWeight: 'bold', color: 'black'}}

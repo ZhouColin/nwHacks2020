@@ -7,8 +7,6 @@ import UserScreen from 'features/UserScreen';
 import SelfScreen from 'features/SelfScreen';
 import LoadingScreen from 'features/LoadingScreen';
 
-
-
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
 
@@ -16,6 +14,7 @@ const AppStack = createBottomTabNavigator(
   {
     Report: ReportScreen,
     User: UserScreen,
+    Self: SelfScreen,
   },
   {
     initialRouteName: 'Report',

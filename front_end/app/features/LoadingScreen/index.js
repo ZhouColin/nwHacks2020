@@ -8,13 +8,14 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {setUser} from 'store/user/actions';
+import {filterNewUsers} from 'store/users/actions';
 
 const LoadingScreen = ({
   user,
+  allUsers,
   navigation,
   updateUser,
   filterAllNewUsers,
-  allUsers,
 }) => {
   useEffect(() => {
     bootStrap();
@@ -22,12 +23,20 @@ const LoadingScreen = ({
 
   const bootStrap = async () => {
     try {
-      const userNew = JSON.parse(await AsyncStorage.getItem('user'));
+      const userNew = await JSON.parse(await AsyncStorage.getItem('user'));
+      const allUsersNew = await JSON.parse(await AsyncStorage.getItem('users'));
       !user && updateUser(userNew);
+
+      filterAllNewUsers({
+        allUsers: allUsersNew,
+        filterBy: 'Neutral',
+      });
+
+      console.log('getData', allUsersNew);
 
       navigation.navigate(userNew || user ? 'App' : 'Auth');
     } catch (err) {
-      throw err;
+      navigation.navigate('Auth');
     }
   };
 
@@ -52,9 +61,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   updateUser: payload => dispatch(setUser(payload)),
-  filterAllNewUsers: payload => {
-    dispatch(filterNewUsers(payload));
-  },
+  filterAllNewUsers: payload => dispatch(filterNewUsers(payload)),
 });
 
 // eslint-disable-next-line prettier/prettier

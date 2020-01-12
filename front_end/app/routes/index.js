@@ -3,9 +3,9 @@ import {createStackNavigator} from 'react-navigation-stack';
 import ReportScreen from 'features/ReportScreen';
 import LoginScreen from 'features/LoginScreen';
 import UserScreen from 'features/UserScreen';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-
+import LoadingScreen from 'features/LoadingScreen';
 
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
@@ -19,10 +19,16 @@ export default createAppContainer(
     {
       Report: AppStack,
       my_pH: AuthStack,
-      Users: UserStack
+      Users: UserStack,
     },
     {
       initialRouteName: 'Report',
+      AuthLoading: LoadingScreen,
+      App: AppStack,
+      Auth: AuthStack,
+    },
+    {
+      initialRouteName: 'AuthLoading',
     },
   ),
 );

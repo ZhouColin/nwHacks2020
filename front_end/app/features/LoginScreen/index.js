@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
-import {Input} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 
 const LoginScreen = () => (
   <SafeAreaView style={styles.pageContainer}>
-    <Input placeholder="BASIC INPUT" />
+    <Button title="log in with twitter" />
   </SafeAreaView>
 );
 

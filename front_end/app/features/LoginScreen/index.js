@@ -72,7 +72,6 @@ const LoginScreen = ({navigation, updateUser, filterAllNewUsers}) => {
 
       const parsedData = await response.json();
 
-      console.log('setData', parsedData.analyses);
       await AsyncStorage.setItem('users', JSON.stringify(parsedData.analyses));
 
       filterAllNewUsers({
@@ -80,7 +79,7 @@ const LoginScreen = ({navigation, updateUser, filterAllNewUsers}) => {
         filterBy: 'Neutral',
       });
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   };
 

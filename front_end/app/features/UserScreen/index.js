@@ -7,12 +7,11 @@ import LinearGradient from 'react-native-linear-gradient'; // Only if no expo
 import {connect} from 'react-redux';
 import {filterUsers} from 'store/users/actions';
 
-const UserScreen = ({filteredUsers, filterAllUsers}) => {
+const UserScreen = ({filteredUsers, filterAllUsers, navigation}) => {
   const [selectedIndex, setSelectedIndex] = useState(2);
   const buttons = ['All', 'Negative', 'Neutral', 'Positive'];
 
   const updateIndex = tabIndex => {
-    console.log('adbs', tabIndex, buttons);
     setSelectedIndex(tabIndex);
     filterAllUsers({filterBy: buttons[tabIndex]});
   };
@@ -36,6 +35,11 @@ const UserScreen = ({filteredUsers, filterAllUsers}) => {
             leftAvatar={{source: {uri: photoUrl}}}
             title={name}
             subtitle={overAllScore}
+            onPress={() =>
+              navigation.navigate('UserInfo', {
+                userData: filteredUsers[userName],
+              })
+            }
             bottomDivider
           />
         );
@@ -51,7 +55,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   filterAllUsers: payload => {
-    console.log('adbs2', payload);
     dispatch(filterUsers(payload));
   },
   // fetchUsers: getUsers,

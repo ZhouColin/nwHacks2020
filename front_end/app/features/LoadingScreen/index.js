@@ -32,8 +32,6 @@ const LoadingScreen = ({
         filterBy: 'Neutral',
       });
 
-      console.log('getData', allUsersNew);
-
       navigation.navigate(userNew || user ? 'App' : 'Auth');
     } catch (err) {
       navigation.navigate('Auth');

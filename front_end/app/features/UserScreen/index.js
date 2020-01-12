@@ -12,7 +12,6 @@ const UserScreen = ({filteredUsers, filterAllUsers, navigation}) => {
   const buttons = ['All', 'Negative', 'Neutral', 'Positive'];
 
   const updateIndex = tabIndex => {
-    console.log('adbs', tabIndex, buttons);
     setSelectedIndex(tabIndex);
     filterAllUsers({filterBy: buttons[tabIndex]});
   };
@@ -56,7 +55,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   filterAllUsers: payload => {
-    console.log('adbs2', payload);
     dispatch(filterUsers(payload));
   },
   // fetchUsers: getUsers,

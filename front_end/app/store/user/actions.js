@@ -1,3 +1,3 @@
 import {actions} from './index';
 
-export const {addUser} = actions;
+export const {setUser} = actions;

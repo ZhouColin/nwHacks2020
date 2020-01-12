@@ -8,6 +8,8 @@ import {
 import {Button} from 'react-native-elements';
 import {setUser} from 'store/user/actions';
 import {connect} from 'react-redux';
+import {filterNewUsers} from 'store/users/actions';
+
 const {RNTwitterSignIn} = NativeModules;
 
 const Constants = {
@@ -15,7 +17,7 @@ const Constants = {
   TWITTER_CONSUMER_SECRET: 'N8J2L1XaeNiFWNfeVrAAnkAFyDjxbiYBpCeFXP42qIWKkiMGQm',
 };
 
-const LoginScreen = ({navigation, updateUser}) => {
+const LoginScreen = ({navigation, updateUser, filterAllNewUsers}) => {
   const onSignIn = async () => {
     try {
       RNTwitterSignIn.init(
@@ -31,6 +33,7 @@ const LoginScreen = ({navigation, updateUser}) => {
       } = await RNTwitterSignIn.logIn();
 
       const user = {authToken, authTokenSecret, name, userID, userName};
+      await fetchUsers(authToken, authTokenSecret);
 
       await AsyncStorage.setItem('user', JSON.stringify(user));
 
@@ -38,6 +41,36 @@ const LoginScreen = ({navigation, updateUser}) => {
       user && navigation.navigate('App');
     } catch (err) {
       throw err;
+    }
+  };
+
+  const fetchUsers = async (authToken, authTokenSecret) => {
+    try {
+      const response = await fetch(
+        'https://team-x-nwhacks.appspot.com/analysis',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            token: authToken,
+            tokenSecret: authTokenSecret,
+          }),
+        },
+      );
+
+      const parsedData = await response.json();
+
+      await AsyncStorage.setItem('users', JSON.stringify(parsedData.analyses));
+
+      filterAllNewUsers({
+        allUsers: parsedData.analyses,
+        filterBy: 'Neutral',
+      });
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -58,6 +91,9 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch => ({
   updateUser: payload => dispatch(setUser(payload)),
+  filterAllNewUsers: payload => {
+    dispatch(filterNewUsers(payload));
+  },
 });
 
 // eslint-disable-next-line prettier/prettier

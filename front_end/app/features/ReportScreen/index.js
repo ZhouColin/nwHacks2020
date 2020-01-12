@@ -32,6 +32,8 @@ class App extends React.PureComponent {
     try {
       const {updateUser, navigation} = this.props;
       await AsyncStorage.removeItem('user');
+      await AsyncStorage.removeItem('users');
+
       updateUser(null);
       navigation.navigate('Auth');
     } catch (err) {

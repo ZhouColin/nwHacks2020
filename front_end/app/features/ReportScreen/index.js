@@ -16,6 +16,7 @@ import {PieChart} from 'react-native-svg-charts';
 import {connect} from 'react-redux';
 import {setUser} from 'store/user/actions';
 import NumberTicker from 'react-native-number-ticker';
+import LinearGradient from 'react-native-linear-gradient';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -65,30 +66,50 @@ class App extends React.PureComponent {
     const deviceHeight = Dimensions.get('window').height;
 
     return (
-      <View style={{justifyContent: 'space-around', top: 50, flex: 0.9}}>
-        <View
-          style={{
+      <View style={{ top: 50, flex: 0.9}}>
+        <LinearGradient colors={['#c4ddff', '#a3caff']} style={{
             position: 'absolute',
             width: deviceWidth,
-            height: 600,
-            top: -50,
-            backgroundColor: '#b5dcfd',
+            height: 700,
+            top:-50,
+            backgroundColor: 'transparent',
           }}
         />
+        <TouchableOpacity
+          style={{left:315,width:100, height:40, borderColor:'white', marginTop: 10, borderRadius:10, alignItems:'center', justifyContent:'center'}}
+          onPress={this.logOut}>
+        <Text style={{color:'#0196c3', fontSize:20}}> Log out </Text>
+
+        </TouchableOpacity>
+        <Text
+          style={{
+            fontSize: 25,
+            color:'white',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            marginTop:-20,
+            borderRadius:5,
+            width:150,
+            height:33,
+            backgroundColor:'#0b428f',
+            left:140, shadowOffset:{width: 5,  height: 5}, top:-20, shadowColor: 'black', shadowOpacity: 0.3
+          }}>
+          My Report
+        </Text>
         <View
           style={{
             position: 'absolute',
             width: deviceWidth,
-            height: 360,
+            height: 300,
             bottom: -175,
-            backgroundColor: '#c9c9c9',
+            backgroundColor: '#dbdbdb',
           }}
         />
         <View
           style={{
             position: 'absolute',
             left: deviceWidth / 2 - 100,
-            top: 70,
+            top: 110,
             width: 200,
             height: 200,
             borderRadius: 100,
@@ -96,7 +117,7 @@ class App extends React.PureComponent {
           }}
         />
         <PieChart
-          style={{height: 300,shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}
+          style={{height: 300,shadowOffset:{width: 5,  height: 5}, top:-10, shadowColor: 'black', shadowOpacity: 0.3}}
           outerRadius={'70%'}
           innerRadius={'60%'}
           data={data}
@@ -106,7 +127,7 @@ class App extends React.PureComponent {
         <Image
           style={{
             position: 'absolute',
-            marginTop:100,
+            marginTop:150,
             left: deviceWidth / 2 - 50,
             width: 100,
             height: 180,
@@ -123,7 +144,7 @@ class App extends React.PureComponent {
           }}
           style={{
             position: 'absolute',
-            top: 195,
+            top: 230,
             fontSize: 25,
             fontWeight: 'bold',
             left: deviceWidth / 2 - labelWidth / 2,
@@ -137,6 +158,7 @@ class App extends React.PureComponent {
             fontSize: 25,
             fontWeight: 'bold',
             textAlign: 'center',
+            marginTop:30
           }}>
           Your pH is quite acidic.
           <Text style={{fontSize: 15, fontWeight: 'normal'}}>
@@ -144,15 +166,15 @@ class App extends React.PureComponent {
             {'\n'} Consider rebalancing your waters.{'\n'}
           </Text>
         </Text>
-        <View style={{justifyContent: 'space-around', flexDirection: 'row',}}>
+        <View style={{justifyContent: 'space-around', flexDirection: 'row', marginTop: 50}}>
           <View
-            style={{width: 90, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
+            style={{width: 120, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
             <TouchableOpacity
               style={{
                 flex: 1,
                 flexDirection: 'column',
                 backgroundColor: 'white',
-                width: 100,
+                width: 120,
                 height: 150,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -175,18 +197,18 @@ class App extends React.PureComponent {
                 </Text>
             </TouchableOpacity>
             <View
-              style={{width: 100, height: 15, backgroundColor: '#91EE9A'}}
+              style={{width: 120, height: 15, backgroundColor: '#91EE9A'}}
             />
           </View>
 
           <View
-            style={{width: 90, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
+            style={{width: 120, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
             <TouchableOpacity
               style={{
                 flex: 1,
                 flexDirection: 'column',
                 backgroundColor: 'white',
-                width: 100,
+                width: 120,
                 height: 150,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -209,18 +231,18 @@ class App extends React.PureComponent {
                 </Text>
             </TouchableOpacity>
             <View
-              style={{width: 100, height: 15, backgroundColor: '#FAFACC'}}
+              style={{width: 120, height: 15, backgroundColor: '#FAFACC'}}
             />
           </View>
 
           <View
-            style={{width: 90, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
+            style={{width: 120, height: 150, justifyContent: 'space-between', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3}}>
             <TouchableOpacity
               style={{
                 flex: 1,
                 flexDirection: 'column',
                 backgroundColor: 'white',
-                width: 100,
+                width: 120,
                 height: 150,
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -243,11 +265,28 @@ class App extends React.PureComponent {
                 </Text>
             </TouchableOpacity>
             <View
-              style={{width: 100, height: 15, backgroundColor: '#FF4040'}}
+              style={{width: 120, height: 15, backgroundColor: '#FF4040'}}
             />
           </View>
         </View>
-        <Button title="log out" onPress={this.logOut} />
+        <Text
+          style={{
+            fontSize: 15,
+            marginTop: 34,
+            textAlign: 'center',
+            fontWeight:'bold',
+            borderRadius:10,
+            borderColor:'white',
+            borderWidth:1,
+            height:20,
+            width:150,
+            backgroundColor:'white',
+            left:133,
+            justifyContent:'center', shadowOffset:{width: 5,  height: 5}, shadowColor: 'black', shadowOpacity: 0.3
+          }}>
+          Following: 110
+        </Text>
+
       </View>
     );
   }

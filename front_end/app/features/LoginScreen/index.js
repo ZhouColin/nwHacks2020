@@ -4,13 +4,22 @@ import {
   SafeAreaView,
   NativeModules,
   AsyncStorage,
+  Dimensions,
+  View,
+  Image,
+  Text,
+  TouchableOpacity
 } from 'react-native';
 import {Button} from 'react-native-elements';
 import {setUser} from 'store/user/actions';
 import {connect} from 'react-redux';
 import {filterNewUsers} from 'store/users/actions';
+import LinearGradient from 'react-native-linear-gradient';
 
 const {RNTwitterSignIn} = NativeModules;
+
+    const deviceWidth = Dimensions.get('window').width;
+    const deviceHeight = Dimensions.get('window').height;
 
 const Constants = {
   TWITTER_COMSUMER_KEY: 'gNDVLWSOW7qBMaZ6VTEPUXf9x',
@@ -76,9 +85,38 @@ const LoginScreen = ({navigation, updateUser, filterAllNewUsers}) => {
   };
 
   return (
-    <SafeAreaView style={styles.pageContainer}>
-      <Button title="log in with twitter" onPress={onSignIn} />
-    </SafeAreaView>
+    <View style={styles.pageContainer}>
+
+
+      <LinearGradient colors={['#5d78b3', '#3b5998', '#1661c9']} style={styles.linearGradient}>
+
+        <View style={{width:deviceWidth, height: deviceHeight, backgroundColor:'transparent', alignItems:'center'}}>
+        <Image
+          style={{
+            position: 'absolute',
+            marginTop:200,
+            width: 110,
+            height: 110,
+          }}
+          source={require('./logo.png')}
+        />
+        <Text style={{color:'#e0e0e0', fontSize:30, marginTop:340, fontWeight:'bold'}}> pHeed </Text>
+
+        <TouchableOpacity
+          style={{width: 200, height: 50, borderColor:'white', marginTop: 170, borderRadius:10, borderWidth:0.5, alignItems:'center', justifyContent:'center'}}
+          onPress={onSignIn}>
+        <Text style={{color:'white', fontSize:20}}> Log in to Twitter </Text>
+        </TouchableOpacity>
+
+        <View style={{width:deviceWidth, height: 15, backgroundColor:'#efefef', marginTop:140}}/>
+        <View style={{width:deviceWidth, height: 15, backgroundColor:'#b5dbfd'}}/>
+
+        </View>
+      </LinearGradient>
+
+
+
+    </View>
   );
 };
 
@@ -88,6 +126,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  linearGradient: {
+  flex: 1,
+  paddingLeft: 15,
+  paddingRight: 15,
+  borderRadius: 5
+},
 });
 
 const mapDispatchToProps = dispatch => ({
